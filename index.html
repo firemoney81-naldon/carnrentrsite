@@ -1,23 +1,360 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+    <!-- Schema.org 구조화 데이터 (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AutomotiveBusiness",
+      "name": "신차리스 비교 견적 센터",
+      "description": "2026년 신차리스 및 장기렌트 가격 비교, 견적, 장단점 분석 전문 서비스. 개인 및 법인 고객 대상 맞춤형 컨설팅 제공.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "서울특별시 강남구 테헤란로 000",
+        "addressLocality": "서울",
+        "addressRegion": "서울특별시",
+        "postalCode": "06130",
+        "addressCountry": "KR"
+      },
+      "telephone": "1661-XXXX",
+      "url": "https://www.example.com/new-car-lease-expert",
+      "openingHours": "Mo-Su 09:00-18:00",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "신차리스 서비스 상품",
+        "itemListElement": [
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"개인 신차리스 견적"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"법인 신차리스 견적"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"중고차리스 승계"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"장기렌트 비교 분석"}}
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "1250"
+      }
+    }
+    </script>
+
+    <!-- 외부 CSS/JS는 실제 운영 시 분리 및 minify -->
+    <style>
+        body { font-family: 'Malgun Gothic', sans-serif; margin: 0; padding: 0; color: #333; line-height: 1.8; background-color: #f8f9fa; }
+        header { background-color: #ffffff; padding: 20px 0; border-bottom: 1px solid #e0e0e0; text-align: center; }
+        header h1 { color: #004d40; margin: 0; font-size: 2.5em; font-weight: 700; }
+        nav ul { list-style: none; padding: 0; margin: 10px auto; display: flex; justify-content: center; gap: 25px; max-width: 1000px; }
+        nav a { text-decoration: none; color: #00796b; font-weight: 600; font-size: 1.1em; padding: 8px 15px; border-radius: 5px; transition: background-color 0.3s; }
+        nav a:hover { background-color: #e0f2f1; }
+
+        .container { max-width: 1000px; margin: 20px auto; padding: 0 20px; }
+        section { background-color: #ffffff; padding: 30px; margin-bottom: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+
+        h2 { color: #004d40; border-bottom: 2px solid #e0f2f1; padding-bottom: 10px; margin-top: 0; font-size: 2em; }
+        h3 { color: #00695c; font-size: 1.5em; margin-top: 20px; border-left: 4px solid #00a08d; padding-left: 10px; }
+        p { margin-bottom: 15px; text-align: justify; }
+        ul { margin-bottom: 15px; padding-left: 20px; list-style-type: disc; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; margin-bottom: 20px; font-size: 0.95em; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f0f8f7; color: #004d40; font-weight: 600; }
+        tr:nth-child(even) { background-color: #fbfcfc; }
+
+        .cta-btn { display: inline-block; background: #00796b; color: #fff; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-size: 1.2em; font-weight: 700; transition: background 0.3s; border: none; cursor: pointer; text-align: center; }
+        .cta-btn:hover { background: #004d40; }
+
+        /* 입력 폼 스타일 */
+        form { background-color: #f4fdfc; padding: 25px; border-radius: 10px; border: 1px solid #e0f2f1; }
+        form label { display: block; margin-bottom: 8px; font-weight: 600; color: #00695c; }
+        form input[type="text"], form input[type="tel"], form input[type="email"], form select, form textarea {
+            width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 1em; }
+        form select { appearance: none; background: #fff url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px; }
+
+        /* 추가 스타일링 */
+        .keyword-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+        .keyword-list li a { display: block; background-color: #e0f2f1; color: #004d40; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-size: 0.9em; transition: background-color 0.3s; }
+        .keyword-list li a:hover { background-color: #b2dfdb; }
+        .card { border: 1px solid #e0e0e0; border-radius: 8px; padding: 20px; margin-bottom: 20px; transition: box-shadow 0.3s; }
+        .card:hover { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); }
+        .graph-placeholder { background-color: #f0f0f0; height: 300px; line-height: 300px; text-align: center; color: #888; border-radius: 8px; margin-top: 20px; margin-bottom: 30px; }
+        .external-link { color: #00796b; font-weight: 600; text-decoration: none; border-bottom: 1px dotted #00796b; transition: color 0.3s; }
+        .external-link:hover { color: #004d40; border-bottom-style: solid; }
+        
+        /* 모바일 최적화 */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8em; }
+            nav ul { flex-direction: column; gap: 5px; }
+            nav li { text-align: center; }
+            .container { padding: 0 10px; }
+            section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 헤더 및 내비게이션 -->
+    <header>
+        <h1>2026 신차리스 가격비교 및 견적 전문센터</h1>
+        <p>투명하고 합리적인 <strong>신차리스</strong>, <strong>장기렌트</strong> 견적부터 <strong>장단점 비교</strong>, <strong>인기 차종 추천</strong>까지!</p>
+        <nav>
+            <ul>
+                <li><a href="#introduction">신차리스란?</a></li>
+                <li><a href="#comparison">리스 vs 장기렌트</a></li>
+                <li><a href="#models">인기 차종 추천</a></li>
+                <li><a href="#pricing">견적 및 비용 분석</a></li>
+                <li><a href="#faq">자주 묻는 질문</a></li>
+                <li><a href="#contact">1:1 맞춤 견적 신청</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <div class="container">
+
+        <!-- 자동완성 반영 키워드 섹션 -->
+        <section id="keywords">
+            <h2>주요 검색 키워드 및 관련 정보</h2>
+            <p>신차리스 관련 고객님들이 <strong>함께 많이 찾는</strong> 검색어들입니다. 아래 키워드를 클릭하시면 해당 정보로 이동합니다.</p>
+            <ul class="keyword-list">
+                <li><a href="#lease-advantage">신차리스 장점</a></li>
+                <li><a href="#lease-disadvantage">신차리스 단점</a></li>
+                <li><a href="#lease-vs-rent">리스와 장기렌트 차이점</a></li>
+                <li><a href="#average-price">신차리스 평균 비용</a></li>
+                <li><a href="#cheap-place">신차리스 저렴한곳</a></li>
+                <li><a href="#car-models">인기 차종별 견적</a></li>
+                <li><a href="#review">신차리스 내돈내산 후기</a></li>
+                <li><a href="#discount">신차리스 할인 혜택</a></li>
+                <li><a href="#ev-lease">전기차 신차리스</a></li>
+                <li><a href="#new-car-benefits">신규 가입 혜택</a></li>
+            </ul>
+        </section>
+
+        <!-- 신차리스 소개 섹션 -->
+        <section id="introduction">
+            <h2>신차리스란 무엇이며, 왜 선택해야 할까요?</h2>
+            <div class="card">
+                <h3>신차리스의 개념과 장점 분석</h3>
+                <p>신차리스는 고객이 원하는 신차를 리스 회사 명의로 구매하여 일정 기간 동안 대여료를 지불하고 이용하는 방식입니다. 차량을 직접 구매하지 않고 이용하는 방식이기에, 차량의 소유권은 리스 회사에 있으며, 계약 기간 만료 후에는 차량을 반납하거나 인수할 수 있습니다. 특히 <strong>신차리스의 장점</strong>은 초기 비용 부담이 적고, 월 납입금이 할부 구매에 비해 상대적으로 낮다는 점입니다. 또한, 보험 및 차량 관리가 포함된 경우가 많아 편리합니다.</p>
+                <p>사업자 고객에게는 특히 세금 절감 효과가 큽니다. 리스료 전액을 손비 처리할 수 있어 법인세 또는 종합소득세를 절감하는 효과를 얻을 수 있습니다. 최근 <strong>2026년 신차</strong> 모델 출시가 이어지면서 새로운 차량을 빠르게 경험하고 싶은 고객들이 <strong>신차리스</strong>를 <strong>추천</strong>하는 경우가 늘어나고 있습니다. 단순히 <strong>저렴한곳</strong>을 찾는 것을 넘어, <strong>전문 업체</strong>의 <strong>맞춤형 컨설팅</strong>이 중요해지고 있습니다.</p>
+                <p><strong>신차리스 장단점</strong>을 명확히 이해하고 계약해야 후회 없는 선택을 할 수 있습니다. <strong>단점</strong>으로는 계약 기간 중 해지 시 위약금이 발생할 수 있으며, 주행거리 제한이 있을 수 있다는 점을 고려해야 합니다. 따라서 <strong>신차리스</strong>를 <strong>가입</strong>하기 전에 충분한 비교와 견적 분석이 필요합니다.</p>
+                <h3 id="lease-advantage">신차리스의 주요 장점 (개인/법인)</h3>
+                <ul>
+                    <li><strong>초기 비용 절감:</strong> 취등록세, 자동차세, 공채 등 초기 구매 비용이 면제되어 목돈 지출을 줄일 수 있습니다.</li>
+                    <li><strong>세금 절감 효과 (법인/개인사업자):</strong> 리스료 전액을 비용으로 처리하여 절세 효과를 누릴 수 있습니다.</li>
+                    <li><strong>재산세 및 건강보험료 상승 방지:</strong> 차량이 리스 회사 명의로 등록되므로 개인 재산으로 잡히지 않아 각종 보험료 인상 요인을 막을 수 있습니다.</li>
+                    <li><strong>차량 교체 용이성:</strong> 계약 기간 만료 시 신차로 갈아타기가 쉽습니다. 중고차 처리에 대한 고민이 없습니다.</li>
+                </ul>
+                <h3 id="lease-disadvantage">신차리스의 단점 및 주의사항</h3>
+                <ul>
+                    <li><strong>총 비용 부담:</strong> 계약 기간 만료 시 인수를 원할 경우, 잔존 가치를 제외한 나머지 금액을 지불해야 하므로 총 비용이 할부보다 높을 수 있습니다.</li>
+                    <li><strong>중도 해지 위약금:</strong> 계약을 도중에 해지할 경우 높은 위약금이 발생할 수 있습니다.</li>
+                    <li><strong>주행거리 제한:</strong> 보통 연간 주행거리 제한(1만~3만km)이 설정되어 있어 초과 시 추가 비용이 발생합니다.</li>
+                    <li><strong>번호판:</strong> 신차리스는 일반 자가용 번호판을 사용합니다 (장기렌트는 '하', '호' 번호판).</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 리스 vs 장기렌트 비교 섹션 -->
+        <section id="comparison">
+            <h2>리스 vs 장기렌트: 차이점 비교 분석</h2>
+            <p>신차를 구매하지 않고 이용하는 방법으로 신차리스와 장기렌트가 있습니다. 두 가지 방법은 유사해 보이지만 <strong>차이점</strong>이 명확하여 고객의 상황에 맞는 선택이 중요합니다. <strong>신차리스</strong>는 일반 차량과 동일한 번호판을 사용하며, 주행거리 제한이 있는 대신 비교적 저렴한 월 납입금이 특징입니다. 반면 <strong>장기렌트</strong>는 주행거리 제한이 없거나 자유롭고 보험료가 렌트료에 포함되어 있다는 장점이 있습니다.</p>
+            <table border="1">
+                <tr><th>구분</th><th>신차리스</th><th>장기렌트</th></tr>
+                <tr><td><strong>소유 명의</strong></td><td>리스 회사</td><td>렌트 회사</td></tr>
+                <tr><td><strong>번호판</strong></td><td>일반 자가용 번호판 (하, 호 제외)</td><td>'하', '호', '허' 번호판 사용</td></tr>
+                <tr><td><strong>보험</strong></td><td>운전자 개인 보험 가입 필요</td><td>렌트 회사 보험 가입 (보험료 포함)</td></tr>
+                <tr><td><strong>비용 처리</strong></td><td>월 리스료 전액 비용 처리 (손비)</td><td>월 렌트료 전액 비용 처리 (손비)</td></tr>
+                <tr><td><strong>잔존가치</strong></td><td>설정 가능 (인수 여부에 따라 달라짐)</td><td>설정 불가능 (반납 전용)</td></tr>
+                <tr><td><strong>주행거리</strong></td><td>주행거리 제한 (초과 시 비용 발생)</td><td>주행거리 제한 없음 또는 유연함</td></tr>
+            </table>
+            <p><strong>신차리스</strong>는 개인사업자나 법인사업자 중 품위 유지와 세금 절감을 동시에 원하는 분들에게 <strong>추천</strong>되며, <strong>장기렌트</strong>는 주행거리가 많고 보험료 부담을 줄이고 싶은 분들에게 <strong>추천</strong>됩니다.</p>
+        </section>
+        
+        <!-- 인기 차종 추천 섹션 -->
+        <section id="models">
+            <h2>2026년 신차리스 인기 차종 추천 및 견적 분석 (30개 이상 키워드 반영)</h2>
+            <p>2026년 모델을 기준으로, 각 차종별 <strong>신차리스</strong>를 <strong>추천</strong>하는 이유와 <strong>평균 견적</strong>을 안내해 드립니다. <strong>신차리스 가격 비교</strong> 시 참고하여 <strong>저렴한곳</strong>을 찾는 데 도움이 되길 바랍니다.</p>
+
+            <div class="card" id="compact-car-lease">
+                <h3>1. 경차 및 소형 SUV (초기 비용 절감형)</h3>
+                <p><strong>캐스퍼리스, 레이리스, K3리스</strong>는 사회 초년생이나 세컨드 카로 인기가 높습니다. <strong>신차리스</strong> 시 월 <strong>평균 금액</strong>이 낮아 <strong>저렴한곳</strong>을 찾는 분들에게 가장 적합합니다. <strong>신규 가입 혜택</strong>이나 <strong>할인 이벤트</strong>를 통해 <strong>신차리스</strong>를 이용하면 더욱 <strong>싼곳</strong>을 찾을 수 있습니다. 경차는 취등록세 감면 혜택도 있어 초기 비용이 매우 낮습니다.</p>
+                <ul>
+                    <li><strong>캐스퍼:</strong> <strong>신차리스 가격</strong> 20만 원대 초반 (48개월 기준)</li>
+                    <li><strong>레이:</strong> <strong>신차리스 견적</strong> 20만 원대 중반 (풀옵션 기준)</li>
+                    <li><strong>K3:</strong> <strong>신차리스 비용</strong> 20만 원대 후반 (가성비 모델)</li>
+                </ul>
+                <p><strong>신차리스</strong>의 <strong>장점</strong>인 낮은 월 납입금으로 <strong>신규 가입</strong>을 원하는 젊은 층이 많이 선택합니다.</p>
+            </div>
+
+            <div class="card" id="suv-lease">
+                <h3>2. 중형 SUV 및 세단 (가족형 인기 모델)</h3>
+                <p><strong>쏘렌토리스, 싼타페리스, 투싼리스, 스포티지리스</strong>는 패밀리카로 가장 선호도가 높은 모델입니다. <strong>신차리스 가격</strong>은 <strong>차종</strong>, <strong>트림</strong>, <strong>옵션</strong>, <strong>계약 기간</strong>, <strong>선수금</strong> 여부에 따라 크게 달라지므로 정확한 <strong>비교</strong>가 필수입니다. <strong>장기렌트</strong>와 <strong>신차리스</strong> 중 어떤 것이 유리한지 <strong>차이점</strong>을 파악하여 <strong>가입</strong>해야 합니다.</p>
+                <ul>
+                    <li><strong>싼타페 (하이브리드 포함):</strong> <strong>신차리스 가격대</strong> 40만 원대 후반 ~ 60만 원대 (트림에 따라 다름)</li>
+                    <li><strong>쏘렌토 (하이브리드 포함):</strong> <strong>신차리스 견적</strong> 40만 원대 중반 ~ 60만 원대 (가장 인기 많은 모델)</li>
+                    <li><strong>투싼:</strong> <strong>신차리스 비용</strong> 30만 원대 후반 ~ 40만 원대 후반</li>
+                    <li><strong>스포티지:</strong> <strong>신차리스 비용</strong> 30만 원대 후반 ~ 40만 원대 중반</li>
+                </ul>
+                <p>특히 <strong>쏘렌토</strong>와 <strong>싼타페</strong>는 신차 출고 대기가 길어질 수 있으므로, <strong>전문 업체</strong>의 즉시 출고 재고를 활용하여 <strong>신규 가입 혜택</strong>을 받는 것이 중요합니다.</p>
+            </div>
+
+            <div class="card" id="premium-lease">
+                <h3>3. 프리미엄 및 수입차 (품위 유지형)</h3>
+                <p><strong>제네시스리스 (G80리스, GV80리스, G70리스), 벤츠리스 (E클래스리스, GLC리스), BMW리스 (5시리즈리스, X3리스)</strong>는 초기 목돈 지출을 줄이면서 품위를 유지하려는 법인 및 개인사업자에게 <strong>신차리스</strong>의 <strong>장점</strong>이 극대화되는 영역입니다. <strong>신차리스</strong>는 일반 구매 시 발생하는 수천만 원의 초기 비용 부담이 없기 때문에, 차량 이용의 효율성을 높일 수 있습니다.</p>
+                <ul>
+                    <li><strong>제네시스 G80:</strong> <strong>신차리스 가격</strong> 80만 원대 후반 ~ 120만 원대 (트림 및 옵션에 따라)</li>
+                    <li><strong>제네시스 GV80:</strong> <strong>신차리스 비용</strong> 100만 원대 ~ 150만 원대</li>
+                    <li><strong>벤츠 E클래스:</strong> <strong>신차리스 견적</strong> 100만 원대 초반 ~ 150만 원대</li>
+                    <li><strong>BMW 5시리즈:</strong> <strong>신차리스 비용</strong> 90만 원대 후반 ~ 140만 원대</li>
+                </ul>
+                <p>이러한 고급차량은 <strong>신차리스 전문 업체</strong>의 <strong>할인율</strong> 및 <strong>사은품</strong>, <strong>현금지원</strong> 여부를 꼼꼼히 <strong>비교</strong>해야 합니다. <strong>싼곳</strong>을 찾기 위해 여러 <strong>업체</strong>의 <strong>견적</strong>을 받아보는 것이 좋습니다.</p>
+            </div>
+
+            <div class="card" id="ev-lease">
+                <h3>4. 전기차 (EV) 신차리스 (보조금 및 세금 혜택)</h3>
+                <p><strong>아이오닉5리스, EV6리스, 모델Y리스, GV60리스, 아이오닉6리스</strong>는 <strong>2026년</strong> 기준으로 <strong>신차리스</strong> 수요가 급증하고 있는 분야입니다. <strong>전기차 신차리스</strong>의 <strong>장점</strong>은 정부 및 지자체 <strong>지원금</strong>(보조금) 혜택을 받을 수 있다는 점입니다. <strong>신차리스 업체</strong>마다 보조금 반영 방식이 다를 수 있으므로 <strong>비교</strong>가 필요합니다. 전기차는 주행거리가 긴 경우 <strong>신차리스</strong>보다는 <strong>장기렌트</strong>가 유리할 수 있습니다.</p>
+                <ul>
+                    <li><strong>아이오닉5:</strong> <strong>신차리스 가격대</strong> 40만 원대 후반 ~ 60만 원대</li>
+                    <li><strong>EV6:</strong> <strong>신차리스 견적</strong> 40만 원대 후반 ~ 60만 원대</li>
+                    <li><strong>테슬라 모델Y:</strong> <strong>신차리스 비용</strong> 60만 원대 ~ 90만 원대 (모델에 따라)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 견적 및 비용 분석 섹션 -->
+        <section id="pricing">
+            <h2>신차리스 견적 안내: 월 납입금 및 예상 비용 분석</h2>
+            <p><strong>신차리스 평균 비용</strong>은 차량 가격, 리스 기간, 잔존가치, 선수금(보증금)에 따라 결정됩니다. 아래 표는 <strong>신차리스 전문 업체</strong>에서 제공하는 일반적인 <strong>평균 가격</strong>을 기준으로 작성되었으며, 실제 견적은 고객의 신용 등급 및 조건에 따라 달라질 수 있습니다. <strong>신차리스 저렴한곳</strong>을 찾는 가장 좋은 방법은 복수의 <strong>업체</strong> <strong>견적</strong>을 <strong>비교</strong>하는 것입니다.</p>
+
+            <h3>예상 월 납입금 예시 (차량별 평균 비용)</h3>
+            <table border="1">
+                <tr><th>차종 (트림)</th><th>차량 가격 (원)</th><th>계약 기간 (48개월)</th><th>선수금/보증금 (0%)</th><th>예상 월 리스료 (원)</th></tr>
+                <tr><td>아반떼 (1.6 가솔린)</td><td>2,000만</td><td>48개월</td><td>0%</td><td>약 30만 ~ 35만</td></tr>
+                <tr><td>K5 (1.6 터보)</td><td>2,800만</td><td>48개월</td><td>0%</td><td>약 38만 ~ 43만</td></tr>
+                <tr><td>투싼 (1.6 하이브리드)</td><td>3,500만</td><td>48개월</td><td>0%</td><td>약 45만 ~ 50만</td></tr>
+                <tr><td>쏘렌토 (2.5 가솔린)</td><td>4,000만</td><td>48개월</td><td>0%</td><td>약 50만 ~ 55만</td></tr>
+                <tr><td>G80 (2.5 터보)</td><td>6,000만</td><td>48개월</td><td>0%</td><td>약 80만 ~ 90만</td></tr>
+            </table>
+            <p>※ 위의 금액은 <strong>신차리스</strong>의 <strong>평균 금액</strong>이며, <strong>할인율</strong> 및 <strong>조건</strong>에 따라 변동될 수 있습니다. <strong>신규 가입 혜택</strong>이나 <strong>이벤트</strong>를 통해 <strong>신차리스</strong> <strong>비용</strong>을 더 낮출 수 있습니다.</p>
+
+            <h3>신차리스 비용에 영향을 미치는 요소</h3>
+            <ol>
+                <li><strong>잔존가치:</strong> 계약 만료 시 예상되는 차량의 중고 가치입니다. 잔존가치를 높게 설정할수록 월 리스료가 낮아집니다.</li>
+                <li><strong>선수금/보증금:</strong> 초기 납입하는 금액입니다. 보증금은 만료 시 반환되지만, 선수금은 소멸됩니다. 선수금을 많이 납부하면 월 리스료는 낮아집니다.</li>
+                <li><strong>계약 기간:</strong> 일반적으로 36개월, 48개월, 60개월 계약이 있습니다. 기간이 길어질수록 월 리스료가 낮아지는 경향이 있습니다.</li>
+                <li><strong>주행거리 제한:</strong> 연간 주행거리 설정에 따라 리스료가 달라집니다. (예: 1만km vs 3만km)</li>
+            </ol>
+        </section>
+        
+        <!-- FAQ 섹션 -->
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <div class="card item">
+                <h3>Q1: 신차리스와 장기렌트 중 어떤 것이 더 유리한가요?</h3>
+                <p>A: <strong>차이점</strong>은 개인의 상황에 따라 다릅니다. 주행거리가 많고 보험료 인상 부담을 피하고 싶다면 <strong>장기렌트</strong>가 유리합니다. 반면, 일반 번호판을 원하고 월 납입금을 최대한 낮추고 싶다면 <strong>신차리스</strong>가 유리합니다. <strong>신차리스 전문 업체</strong>와 상담하여 본인의 상황을 분석하는 것이 중요합니다.</p>
+            </div>
+            <div class="card item">
+                <h3>Q2: 신차리스 계약 기간 중 해지 시 위약금이 많이 발생하나요?</h3>
+                <p>A: 예, <strong>신차리스</strong>는 중도 해지 시 위약금이 발생하는 <strong>단점</strong>이 있습니다. 위약금은 남은 리스료의 일정 비율로 책정되므로 신중하게 계약 기간을 결정해야 합니다. 부득이한 경우 승계하는 방법도 있으나, <strong>신차리스 업체</strong>마다 승계 조건이 다릅니다.</p>
+            </div>
+            <div class="card item">
+                <h3>Q3: 신차리스 후 차량 인수 시 단점은 무엇인가요?</h3>
+                <p>A: <strong>신차리스</strong> 계약 만료 후 차량을 인수할 경우, 잔존가치를 지불해야 합니다. 이때 취등록세가 또다시 발생합니다. 만약 인수하지 않고 반납할 경우, 감가상각으로 인한 손해를 보지 않는다는 <strong>장점</strong>이 있습니다. <strong>신차리스</strong>는 인수를 목적으로 하기보다 차량을 이용하는 것에 초점을 맞추는 것이 좋습니다.</p>
+            </div>
+            <div class="card item">
+                <h3>Q4: 신차리스 견적을 받을 때 "사은품"이나 "현금지원" 혜택을 받을 수 있나요?</h3>
+                <p>A: 일부 <strong>신차리스 업체</strong>에서는 <strong>신규 가입 혜택</strong>으로 <strong>사은품</strong>(블랙박스, 틴팅 등)이나 <strong>현금지원</strong>을 제공합니다. 이는 <strong>업체</strong>별로 다르게 진행되므로 <strong>신차리스 가격 비교</strong> 시 <strong>지원금</strong>을 함께 고려하는 것이 <strong>저렴한곳</strong>을 찾는 한 방법이 될 수 있습니다. <strong>내돈내산 후기</strong>를 참고하여 <strong>신차리스 업체</strong>의 신뢰도와 혜택을 확인하세요.</p>
+            </div>
+            <div class="card item">
+                <h3>Q5: 신용 등급이 낮아도 신차리스 가입이 가능한가요?</h3>
+                <p>A: <strong>신차리스</strong>는 대출과 유사하여 신용 등급 심사가 필요합니다. 신용 등급이 낮은 경우 승인 심사에서 거절되거나 보증금 납입을 요구받을 수 있습니다. 신용 등급이 600점대 이하인 경우 <strong>신차리스</strong>보다는 <strong>장기렌트</strong>가 상대적으로 심사가 수월할 수 있습니다.</p>
+            </div>
+        </section>
+
+        <!-- 정보성 콘텐츠 및 외부 사이트 링크 -->
+        <section id="external-info">
+            <h2>신뢰성 있는 외부 사이트 정보 및 전문가 칼럼</h2>
+            <p><strong>신차리스</strong> 관련 정보를 정확하게 파악하고 합리적인 결정을 돕기 위해 공신력 있는 외부 기관의 정보를 참고하시길 바랍니다.</p>
+            <ol>
+                <li><a href="https://www.nso.go.kr" class="external-link" target="_blank">통계청</a>: 자동차 등록 현황 및 시장 동향에 대한 객관적인 데이터를 제공합니다.</li>
+                <li><a href="https://www.molit.go.kr" class="external-link" target="_blank">국토교통부</a>: 자동차 관련 법률, 세금, 안전 기준 등 공식 정보를 확인할 수 있습니다.</li>
+                <li><a href="https://www.korea.kr" class="external-link" target="_blank">대한민국 정책브리핑</a>: 정부의 자동차 산업 정책, 전기차 보조금 등 최신 정보를 제공합니다.</li>
+                <li><a href="https://namu.wiki/w/%EC%8B%A0%EC%B0%A8%EB%A6%AC%EC%8A%A4" class="external-link" target="_blank">나무위키</a>: 신차리스의 개념과 장단점, 주의사항 등에 대한 일반적인 정보를 얻을 수 있습니다.</li>
+                <li><a href="https://www.kofia.or.kr" class="external-link" target="_blank">한국금융투자협회</a>: 리스 금융 상품의 정의와 규제에 대한 정보를 제공합니다.</li>
+            </ol>
+            <p>2026년 신차 시장은 전기차 및 하이브리드 차량 중심으로 재편되고 있습니다. <strong>신차리스</strong>는 이러한 변화에 유연하게 대처하고 새로운 기술을 경험할 수 있는 합리적인 대안으로 <strong>추천</strong>됩니다. <strong>신차리스 업체</strong>를 선택할 때, <strong>가입</strong> 시 제공되는 <strong>사은품</strong>, <strong>할인율</strong>뿐만 아니라 <strong>전문 업체</strong>의 컨설팅 능력과 사후 관리 서비스(차량 관리, 사고 처리 등)를 꼼꼼히 <strong>비교</strong>해야 합니다.</p>
+        </section>
+
+        <!-- 상담 신청 및 연락처 -->
+        <section id="contact">
+            <h2>1:1 맞춤 신차리스 견적 신청</h2>
+            <p>고객님의 상황에 맞는 정확한 <strong>신차리스</strong> <strong>비용</strong>과 <strong>장단점 비교</strong> 컨설팅을 제공해 드립니다. 아래 양식을 작성해 주시면 <strong>전문 업체</strong>가 15분 이내로 연락드립니다.</p>
+            <form action="/submit-quote" method="post">
+                <p>
+                    <label for="name">이름</label>
+                    <input type="text" id="name" name="name" required placeholder="예: 홍길동">
+                </p>
+                <p>
+                    <label for="phone">연락처 (자동 견적 안내)</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="예: 010-XXXX-XXXX">
+                </p>
+                <p>
+                    <label for="carModel">희망 차종 (구체적으로 작성 시 정확한 견적 제공)</label>
+                    <select id="carModel" name="carModel" required>
+                        <option value="">차종을 선택해주세요</option>
+                        <option value="아반떼">현대 아반떼</option>
+                        <option value="쏘나타">현대 쏘나타</option>
+                        <option value="그랜저">현대 그랜저</option>
+                        <option value="싼타페">현대 싼타페</option>
+                        <option value="투싼">현대 투싼</option>
+                        <option value="아이오닉5">현대 아이오닉 5</option>
+                        <option value="캐스퍼">현대 캐스퍼</option>
+                        <option value="K3">기아 K3</option>
+                        <option value="K5">기아 K5</option>
+                        <option value="K8">기아 K8</option>
+                        <option value="쏘렌토">기아 쏘렌토</option>
+                        <option value="스포티지">기아 스포티지</option>
+                        <option value="EV6">기아 EV6</option>
+                        <option value="레이">기아 레이</option>
+                        <option value="G80">제네시스 G80</option>
+                        <option value="GV70">제네시스 GV70</option>
+                        <option value="GV80">제네시스 GV80</option>
+                        <option value="E클래스">벤츠 E클래스</option>
+                        <option value="5시리즈">BMW 5시리즈</option>
+                        <option value="모델Y">테슬라 모델Y</option>
+                        <option value="기타">기타 차종</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="leaseType">희망 계약 유형</label>
+                    <select id="leaseType" name="leaseType" required>
+                        <option value="신차리스">신차리스</option>
+                        <option value="장기렌트">장기렌트</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="term">희망 계약 기간 (개월)</label>
+                    <select id="term" name="term" required>
+                        <option value="36">36개월</option>
+                        <option value="48">48개월</option>
+                        <option value="60">60개월</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="initialPayment">초기 납입금 (보증금/선수금) 희망 여부</label>
+                    <select id="initialPayment" name="initialPayment" required>
+                        <option value="0">0% (초기 비용 없음)</option>
+                        <option value="10">10%</option>
+                        <option value="20">20%</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="details">추가 요청 사항 (트림, 옵션, 예상 주행거리 등)</label>
+                    <textarea id="details" name="details" rows="4" placeholder="예: 쏘렌토 하이브리드 노블레스 트림, 연간 주행거리 2만km, 법인 사업자 견적 문의" required></textarea>
+                </p>
+                <button type="submit" class="cta-btn">맞춤 견적 요청하기</button>
+            </form>
+            <p style="text-align: center; margin-top: 20px;">📞 전화 문의: <a href="tel:1661-XXXX" class="cta-btn" style="background: #e67e22; margin-top: 10px;">1661-XXXX</a></p>
+        </section>
+
+    </div> <!-- .container -->
+
+  
+  
